@@ -10,6 +10,7 @@ public:
     {
         priority_queue<int, vector<int>, greater<int>> l_queue, r_queue;
         int i = 0, j = costs.size() - 1;
+        long long total_cost = 0;
 
         while ((candidates > 0) && (i <= j))
         {
@@ -25,9 +26,58 @@ public:
             --candidates;
         }
 
-        cout << l_queue.size() << endl;
-        cout << r_queue.size() << endl;
+        while (k > 0)
+        {
+            if (!l_queue.empty() && !r_queue.empty())
+            {
+                if (l_queue.top() > r_queue.top())
+                {
+                    total_cost += r_queue.top();
+                    r_queue.pop();
 
-        return 0;
+                    if (i <= j)
+                    {
+                        r_queue.push(costs[j]);
+                        --j;
+                    }
+                }
+                else
+                {
+                    total_cost += l_queue.top();
+                    l_queue.pop();
+
+                    if (i <= j)
+                    {
+                        l_queue.push(costs[i]);
+                        ++i;
+                    }
+                }
+            }
+            else
+            {
+                if (l_queue.empty())
+                {
+                    total_cost += r_queue.top();
+                    r_queue.pop();
+                }
+                else
+                {
+                    total_cost += l_queue.top();
+                    l_queue.pop();
+                }
+            }
+
+            --k;
+        }
+
+        return total_cost;
     }
 };
+
+static char init = []()
+{
+    ios_base::sync_with_stdio(0),
+    cin.tie(0),
+    cout.tie(0);
+    return 'c';
+} ();
