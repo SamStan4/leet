@@ -12,6 +12,7 @@
 #include <set>
 #include <map>
 #include <list>
+#include <bitset>
 
 #define INT_MAX  2147483647
 #define INT_MIN -2147483648
@@ -48,3 +49,4 @@ using std::list;
 using std::count;
 using std::begin;
 using std::end;
+using std::bitset;
