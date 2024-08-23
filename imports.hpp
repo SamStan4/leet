@@ -50,3 +50,4 @@ using std::count;
 using std::begin;
 using std::end;
 using std::bitset;
+using std::__gcd;
