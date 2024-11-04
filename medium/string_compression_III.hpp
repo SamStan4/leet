@@ -1,0 +1,43 @@
+#pragma once
+
+#include "./../imports.hpp"
+
+class Solution
+{
+public:
+    string compressedString(string word)
+	{
+		string comp;
+		int curCount = 1;
+		char curLetter = word[0];
+
+		for (int i = 1; i < word.size(); ++i)
+		{
+			if (curLetter != word[i] || curCount == 9)
+			{
+				comp += to_string(curCount);
+				comp.push_back(curLetter);
+
+				curCount = 1;
+				curLetter = word[i];
+			}
+			else
+			{
+				++curCount;
+			}
+		}
+
+		comp += to_string(curCount);
+		comp.push_back(curLetter);
+
+		return comp;
+    }
+};
+
+static int init = []()
+{
+	ios_base::sync_with_stdio(false),
+		cin.tie(nullptr),
+		cout.tie(nullptr);
+	return 0;
+} ();
