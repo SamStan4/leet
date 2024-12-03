@@ -1,6 +1,6 @@
 #include "imports.hpp"
 
-#include "./random_problems/GOOGLE_QUESTION.hpp"
+#include "./medium"
 
 
 int main(void)
