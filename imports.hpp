@@ -14,6 +14,7 @@
 #include <list>
 #include <bitset>
 #include <cstring>
+#include <stack>
 
 #define INT_MAX  2147483647
 #define INT_MIN -2147483648
@@ -53,3 +54,4 @@ using std::end;
 using std::bitset;
 using std::__gcd;
 using std::memset;
+using std::stack;
