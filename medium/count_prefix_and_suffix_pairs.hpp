@@ -19,12 +19,9 @@ private:
 public:
     int countPrefixSuffixPairs(vector<string>& words) {
         int count = 0;
-        for (int i = 0; i < words.size(); ++i) {
-            for (int j = i + 1; j < words.size(); ++j) {
-                if (i == j) {
-                    continue;
-                }
-                count += this->isPrefixSuffix(words[j], words[i]) ? 1 : 0;
+        for (int i = 1; i < words.size(); ++i) {
+            for (int j = 0; j < i; ++j) {
+                count += this->isPrefixSuffix(words[i], words[j]) ? 1 : 0;
             }
         }
         return count;
