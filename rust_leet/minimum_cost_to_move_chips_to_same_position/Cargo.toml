@@ -1,0 +1,6 @@
+[package]
+name = "minimum_cost_to_move_chips_to_same_position"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

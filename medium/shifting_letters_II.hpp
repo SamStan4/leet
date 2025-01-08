@@ -58,7 +58,7 @@ public:
         }
         return s;
     }
-};
 
+};
 
 #endif
