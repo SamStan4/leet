@@ -2,6 +2,8 @@ pragma once
 
 #include "../imports.hpp"
 
+#if 0
+
 class Solution {
 private:
 	bool isPrefix(const string& word, const string& prfx) {
@@ -24,3 +26,27 @@ public:
 		return count;
 	}
 };
+
+#else
+
+int isPrefix(char* word, char* prfx) {
+	int i = 0;
+	for (; prfx[i] != '\0' && word[i] != '\0'; ++i) {
+		if (word[i] != prfx[i]) {
+			return 0;
+		}
+	}
+	return prfx[i] == '\0';
+}
+
+int prefixCount(char** words, int wordsSize, char* pref) {
+	int count = 0;
+	for (int i = 0; i < wordsSize; ++i) {
+		if (isPrefix(words[i], pref)) {
+			++count;		
+		}
+	}
+	return count;
+}
+
+#endif
