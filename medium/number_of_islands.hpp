@@ -2,6 +2,8 @@
 
 #include "./../imports.hpp"
 
+#if 0
+
 class Solution
 {
 private:
@@ -53,3 +55,42 @@ static char fast = []()
     cout.tie(0);
     return 'c';
 } ();
+
+#else
+
+using i32 = int32_t;
+
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        const i32 n = (i32)grid.size();
+        const i32 m = (i32)grid[0].size();
+        std::function<void(const i32, const i32)> exp = [&](const i32 r, const i32 c) -> void {
+            grid[r][c] = '$';
+            if (r - 1 >= 0 && grid[r - 1][c] == '1') exp(r - 1, c);
+            if (c - 1 >= 0 && grid[r][c - 1] == '1') exp(r, c - 1);
+            if (r + 1 < n && grid[r + 1][c] == '1') exp(r + 1, c);
+            if (c + 1 < m && grid[r][c + 1] == '1') exp(r, c + 1);
+        };
+        i32 num = 0;
+        for (i32 i = 0; i < n; ++i)
+            for (i32 j = 0; j < m; ++j)
+                if (grid[i][j] == '1') {
+                    ++num;
+                    exp(i, j);
+                }
+        return num;
+    }
+};
+
+
+
+static int init = []() {
+    ios_base::sync_with_stdio(false),
+        cin.tie(nullptr),
+        cout.tie(nullptr);
+    return 0;
+} ();
+
+
+#endif

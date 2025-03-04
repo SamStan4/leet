@@ -15,9 +15,9 @@
 #include <bitset>
 #include <cstring>
 #include <stack>
-
-#define INT_MAX  2147483647
-#define INT_MIN -2147483648
+#include <climits>
+#include <functional>
+#include <cassert>
 
 using std::cout;
 using std::cin;
@@ -55,3 +55,4 @@ using std::bitset;
 using std::__gcd;
 using std::memset;
 using std::stack;
+using std::function;

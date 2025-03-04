@@ -3,6 +3,8 @@
 #include "./../imports.hpp"
 #include "./../cppBinaryTree.hpp"
 
+#if 0
+
 class Solution
 {
 private:
@@ -58,3 +60,49 @@ public:
         return this->common_ancestor;
     }
 };
+
+#elif 0
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        TreeNode* lca = nullptr;
+        const std::function<int(TreeNode*)> dfs = [&](TreeNode* curPtr) -> int {
+            if (lca != nullptr || curPtr == nullptr) {
+                return 0;
+            }
+            int count = 0;
+            if (curPtr == p || curPtr == q) {
+                ++count;
+            }
+            count += dfs(curPtr->left);
+            count += dfs(curPtr->right);
+            if (lca == nullptr && count == 2) {
+                lca = curPtr;
+                return 0;
+            }
+            return count;
+        };
+        dfs(root);
+        return lca;
+    }
+};
+
+#else
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (root == nullptr || root == p || root == q) {
+            return root;
+        }
+        TreeNode* left = this->lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = this->lowestCommonAncestor(root->right, p, q);
+        if (left != nullptr && right != nullptr) {
+            return root;
+        }
+        return left != nullptr ? left : right;
+    }
+};
+
+#endif
