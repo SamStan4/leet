@@ -45,5 +45,4 @@ public:
 
 #else
 
-aaaaaa
 #endif

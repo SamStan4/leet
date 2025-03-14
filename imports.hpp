@@ -18,6 +18,7 @@
 #include <climits>
 #include <functional>
 #include <cassert>
+#include <numeric>
 
 using std::cout;
 using std::cin;
