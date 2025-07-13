@@ -2,31 +2,38 @@
 
 #include "./../imports.hpp"
 
-class MyQueue
-{
+class MyQueue {
 private:
-
-	vector<int> vOne, vTwo;
-
+  std::stack<int> s;
 public:
-    MyQueue() {}
-    
-    void push(int x)
-	{
+  MyQueue() {}
+  
+  void push(int x) {
+    std::stack<int> s2;
+    while (!this->s.empty()) {
+      s2.push(this->s.top());
+      this->s.pop();
     }
-    
-    int pop()
-	{
-		return 0;   
+    this->s.push(x);
+    while (!s2.empty()) {
+      this->s.push(s2.top());
+      s2.pop();
     }
-    
-    int peek()
-	{
-        return 0;
-    }
-    
-    bool empty()
-	{
-        return false;
-    }
+  }
+  
+  int pop() {
+    assert(!this->s.empty() && "s was empty");
+    const int val = this->s.top();
+    this->s.pop();
+    return val;
+  }
+  
+  int peek() {
+    assert(!this->s.empty() && "s was empty");
+    return this->s.top();
+  }
+  
+  bool empty() {
+    return this->s.empty();
+  }
 };
