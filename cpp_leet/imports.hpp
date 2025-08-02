@@ -20,6 +20,7 @@
 #include <cassert>
 #include <numeric>
 #include <limits>
+#include <memory>
 using std::cout;
 using std::cin;
 using std::endl;
