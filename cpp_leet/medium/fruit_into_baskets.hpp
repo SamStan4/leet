@@ -29,12 +29,12 @@ int Solution::totalFruit(const std::vector<int>& fruits) {
 
   for (int i = 0, j = 0; j < n; ++j) {
 
-    if (fruitX == fruits[j] || fruitX == -1) {
+    if (fruitX == fruits[j]) {
 
       fruitX = fruits[j];
       ++fruitXCount;
 
-    } else if (fruitY == fruits[j] || fruitY == -1) {
+    } else if (fruitY == fruits[j]) {
 
       fruitY = fruits[j];
       ++fruitYCount;
