@@ -1,5 +1,8 @@
 #include <vector>
 #include <functional>
+#include <ios>
+#include <iostream>
+#include <cstdlib>
 
 class Solution {
 
@@ -62,7 +65,7 @@ class Solution {
      * @param fruits A 2d matrix of rooms that contain fruits.
      * @return int The max number of fruits that we can collect.
      */
-    static int maxCollectedFruits(std::vector<std::vector<int>>& fruits);
+    static int maxCollectedFruits(const std::vector<std::vector<int>>& fruits);
 };
 
 int Solution::collectChildOneSum(const std::vector<std::vector<int>>& f) {
@@ -107,9 +110,16 @@ int Solution::collectChildThreeSum(const std::vector<std::vector<int>>& f) {
   return dp(n - 1, 0);
 }
 
-int Solution::maxCollectedFruits(std::vector<std::vector<int>>& fruits) {
+int Solution::maxCollectedFruits(const std::vector<std::vector<int>>& fruits) {
   return
     Solution::collectChildOneSum(fruits) +
     Solution::collectChildTwoSum(fruits) +
     Solution::collectChildThreeSum(fruits);
 }
+
+static int _ = []() {
+  std::ios_base::sync_with_stdio(false),
+    std::cin.tie(nullptr),
+    std::cout.tie(nullptr);
+  return 0;
+} ();
