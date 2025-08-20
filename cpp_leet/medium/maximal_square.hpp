@@ -47,7 +47,7 @@ public:
     }
 };
 
-#else
+#elif 0
 
 class Solution {
 public:
@@ -59,7 +59,7 @@ public:
         /** Grab the row and column lengths from the matrix */
         const int n = matrix.size(), m = matrix[0].size();
         
-        /** Only need two rows for optomized dp solution */
+        /** Only need two rows for optimized dp solution */
         vector<vector<int>> dpRows(2, vector<int>(m, 0));
 
         /** The max side length that we find in the matrix */
@@ -98,5 +98,45 @@ public:
         return maxSide * maxSide;
     }
 };
+
+#else
+
+class Solution {
+public:
+  int maximalSquare(vector<vector<char>>& matrix);
+};
+
+int Solution::maximalSquare(std::vector<std::vector<char>>& matrix) {
+  const int n = static_cast<int>(matrix.size());
+  if (n == 0) return 0;
+  const int m = static_cast<int>(matrix[0].size());
+  std::vector<int> dpPrev(m, 0);
+  std::vector<int> dpCur(m, 0);
+  int maxSide = 0;
+  for (int i = 0; i < m; ++i) {
+    if (matrix[0][i] == '1') {
+      maxSide = 1;
+      dpPrev[i] = 1;
+    }
+  }
+  for (int i = 1; i < n; ++i) {
+    if (matrix[i][0] == '1') {
+      dpCur[0] = 1;
+      maxSide = std::max(maxSide, 1);
+    } else {
+      dpCur[0] = 0;
+    }
+    for (int j = 1; j < m; ++j) {
+      if (matrix[i][j] == '1') {
+        dpCur[j] = std::min({dpCur[j-1], dpPrev[j-1], dpPrev[j]}) + 1;
+        maxSide = std::max(maxSide, dpCur[j]);
+      } else {
+        dpCur[j] = 0;
+      }
+    }
+    std::swap(dpCur, dpPrev);
+  }
+  return maxSide * maxSide;
+}
 
 #endif
