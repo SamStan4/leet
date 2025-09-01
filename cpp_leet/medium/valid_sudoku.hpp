@@ -1,5 +1,8 @@
 #pragma once
 
+
+#ifdef noob_who_wrote_this
+
 #include "./../imports.hpp"
 
 class Solution
@@ -51,3 +54,32 @@ auto init = []()
     cout.tie(nullptr);
     return 'c';
 } ();
+
+
+#else
+
+#include <vector>
+#include <iostream>
+
+class Solution {
+public:
+  bool isValidSudoku(std::vector<std::vector<char>>& board);
+};
+
+// This code is much worse looking :-)
+bool Solution::isValidSudoku(std::vector<std::vector<char>>& board) {
+  bool a[3][9][9] = {{{ false }}};
+  for (int i = 0; i < 9; ++i) {
+    for (int j = 0; j < 9; ++j) {
+      if (board[i][j] == '.') continue;
+      const int b = board[i][j] - '1';
+      const int c = ((i / 3) * 3) + (j / 3);
+      if (a[0][i][b] || a[1][j][b] || a[2][c][b]) return false;
+      a[0][i][b] = a[1][j][b] = a[2][c][b] = true;
+    }
+  }
+  return true;
+}
+
+
+#endif
