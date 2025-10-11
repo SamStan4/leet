@@ -55,11 +55,11 @@ class Solution {
     long long do_the_dp(std::vector<long long>& dp_cache, const size_t idx) {
       if (idx >= this->spell_power_info.size()) return 0;
       if (dp_cache[idx] != -1) return dp_cache[idx];
-      const long long without = this->do_the_dp(dp_cache, idx + 1);
-      const long long with = this->spell_power_info[idx].get_total_power_output() + this->do_the_dp(dp_cache, this->get_next_idx(idx));
-      const long long max_output = std::max(with, without);
-      dp_cache[idx] = max_output;
-      return max_output;
+      dp_cache[idx] = std::max(
+        this->do_the_dp(dp_cache, idx + 1),
+        this->spell_power_info[idx].get_total_power_output() + this->do_the_dp(dp_cache, this->get_next_idx(idx))
+      );
+      return dp_cache[idx];
     }
 
   public:
