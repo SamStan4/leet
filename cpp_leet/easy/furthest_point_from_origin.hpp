@@ -1,8 +1,9 @@
-#include <string>
+#include <string_view>
+#include <cmath>
 
 class Solution {
 public:
-    int furthestDistanceFromOrigin(const std::string& moves) {
+    int furthestDistanceFromOrigin(const std::string_view moves) {
         int lCount = 0;
         int rCount = 0;
         int underscoreCount = 0;
